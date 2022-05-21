@@ -1,0 +1,27 @@
+/*
+ * controller.c
+ *
+ *  Created on: May 19, 2022
+ *      Author: Villi
+ */
+
+#include "controller.h"
+
+/*
+float controlSpeed(struct ControllerData* ctrData){
+	int16_t err = ctrData->setPoint - ctrData->currentValue;
+	int16_t P = ctrData->Kp*err;
+	ctrData->IValue += err;
+	if(ctrData->IValue > ctrData->iMax){
+		ctrData->IValue = ctrData->iMax;
+	}else if(ctrData->IValue < ctrData->iMin){
+		ctrData->IValue = ctrData->iMax;
+	}
+	float I = ctrData->Ki* ctrData->IValue;
+	float out = ctrData->currentValue - (P + (float)I);
+	return out;
+}
+
+*/
+
+

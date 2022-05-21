@@ -1,0 +1,25 @@
+/*
+ * controller.c
+ *
+ *  Created on: May 19, 2022
+ *      Author: Villi
+ */
+
+#include "controller.h"
+#include <stdbool.h>	//Boolean
+#include <math.h>			//Pow()
+
+float controlSpeed(ControllerData ctrData){
+	int16_t err = ctrData.setPoint - ctrData.currentValue;
+	int16_t P = ctrData.Kp*err;
+	ctrData.IValue += err;
+	if(ctrData.IValue > ctrData.iMax){
+		ctrData.IValue = ctrData.iMax;
+	}else if(ctrData.IValue < ctrData.iMin){
+		ctrData.IValue = ctrData.iMax;
+	}
+	I = ctrData.Ki* ctrData.IValue;
+	return (ctrData.currentValue - (P + I));
+}
+
+

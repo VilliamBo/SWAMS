@@ -1,0 +1,38 @@
+/*
+ * controller.h
+ *
+ *  Created on: May 19, 2022
+ *      Author: Villi
+ */
+
+#ifndef SRC_CONTROLLER_H_
+#define SRC_CONTROLLER_H_
+
+typedef struct
+{
+	//max gyro number is around 1500 (UNDERSØG) int16 is the lowest type size.
+	//'_t' makes it 2'compliment to show negative numbers.
+	int16_t setPoint = 0; // position 1000/-1000
+	int16_t currentValue = 0; //Gyro position 1000/-1000
+	float Kp = 0;
+	float Ki = 0;
+	float iMax = 1000; // 100/-100
+	float iMin = -1000;
+	float IValue = 0;
+}ControllerData;
+
+float controlSpeed(ControllerData ctrData){
+	int16_t err = ctrData.setPoint - ctrData.currentValue;
+	int16_t P = ctrData.Kp*err;
+	ctrData.IValue += err;
+	if(ctrData.IValue > ctrData.iMax){
+		ctrData.IValue = ctrData.iMax;
+	}else if(ctrData.IValue < ctrData.iMin){
+		ctrData.IValue = ctrData.iMax;
+	}
+	I = ctrData.Ki* ctrData.IValue;
+	return (ctrData.currentValue - (P + I));
+}
+
+
+#endif /* SRC_CONTROLLER_H_ */
