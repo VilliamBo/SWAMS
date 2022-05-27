@@ -14,7 +14,10 @@ participant MotorDriver\
 \
 User -> MicroController: Raise and turn on robot\
 \
+MicroController -> MicroController: Initialize\
+\
 loop while true\
+alt timer-interrupt\
 \
 MicroController -> GyroScope : get orientationValues\
 GyroScope --> MicroController : values\
@@ -22,9 +25,6 @@ GyroScope --> MicroController : values\
 MicroController -> MicroController : calculate PID output\
 \
 MicroController -> MotorDriver : setMotorOutput\
-       \
-       \
-\
-        \
+end      \
 end\
 @enduml}
